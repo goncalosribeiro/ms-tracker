@@ -1,0 +1,24 @@
+<div class="item" id="<%= item.id %>">
+  <a href="#">
+    <div class="item-img">
+      <img src="https://image.tmdb.org/t/p/w300<%= item.poster %> " alt="">
+    </div>
+    <div class="item-description">
+      <div class="item-rate">
+        <div class="progress-container">
+          <div class="progress-rate" style="width: <%= item.ratePercent %>%"></div>
+        </div>
+        <img src="/images/rating.png" alt="">
+        <div class="rate-value">
+          <p><%= item.rate %></p>
+        </div>
+      </div>
+      <div class="text-content">
+        <p class="item-title"><%= item.title %></p>
+        <p class="item-tagline"><%= item.tagline %></p>
+        <p class="item-year"><%= item.year %></p>
+      </div>
+      </p>
+    </div>
+  </a>
+</div>

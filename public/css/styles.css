@@ -243,7 +243,7 @@ button:focus {
 }
 
 .text-content {
-  padding-top: 30px;
+  padding-top: 45px;
   padding-left: 10px;
 }
 
@@ -258,6 +258,7 @@ button:focus {
 .item-title {
   font-size: 20px;
   font-weight: 700;
+  line-height: 1.2em;
 }
 
 .item-type {
