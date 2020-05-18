@@ -1,11 +1,13 @@
 {
   "name": "ms-tracker",
+  "homepage": "https://goncalosribeiro.github.io/ms-tracker",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -16,7 +18,6 @@
   "bugs": {
     "url": "https://github.com/goncalosribeiro/ms-tracker/issues"
   },
-  "homepage": "https://github.com/goncalosribeiro/ms-tracker#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
