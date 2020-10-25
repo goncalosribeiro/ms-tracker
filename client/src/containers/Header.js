@@ -15,11 +15,11 @@ const Header = (props) => {
           </div>
         </div>
         <div className="top-center">
-          <NavLink to="/movies" className="ch-button">
+          <NavLink to="/movie" className="ch-button">
             {/* onClick={props.mode} */}
             Movies
           </NavLink>
-          <NavLink to="/series" className="ch-button">
+          <NavLink to="/tv" className="ch-button">
             {/* onClick={props.mode} */}
             Series
           </NavLink>
