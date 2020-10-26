@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../store/store'
+import './LoadMoreBtn.css'
 
 const LoadMoreBtn = () => {
-  return (
-    <div>
+  const [state, dispatch] = useContext(Context);
 
+  const clickLoadMore = () => {
+    dispatch({ type: "LOAD_MORE", payload: true });
+  }
+
+  return (
+    <div className="rmdb-loadmorebtn" onClick={clickLoadMore}>
+      <p>Load More</p>
     </div>
   )
 }

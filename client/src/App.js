@@ -36,6 +36,20 @@ const App = () => {
     }
   }, [state.submitTerm]);
 
+  useEffect(() => {
+    if (state.loadMore === true) {
+      let endPoint = ''
+      if (state.searchTerm === "") {
+        endPoint = `https://api.themoviedb.org/3/${state.mode}/${state.listType}?api_key=${process.env.REACT_APP_MSDB_ACCESS}&page=${state.page + 1
+          }&include_adult=false`;
+      } else {
+        endPoint = `https://api.themoviedb.org/3/search/${state.mode}?api_key=${process.env.REACT_APP_MSDB_ACCESS}&query=${state.submitTerm}&page=${state.page + 1
+          }&include_adult=false`;
+      }
+      fetchItems(endPoint);
+    }
+  }, [state.loadMore])
+
   const fetchItems = (endPoint) => {
     axios
       .get(endPoint)
@@ -45,7 +59,7 @@ const App = () => {
         if (newItems) {
           dispatch({ type: "PAGE", payload: response.data.page });
           dispatch({ type: "ITEMS_LIST", payload: [...state.itemsList, ...newItems] });
-          dispatch({ type: "LOADING", payload: false });
+          dispatch({ type: "CLEAR" });
           dispatch({ type: "TOTAL_PAGES", payload: response.data.total_pages });
         };
       })

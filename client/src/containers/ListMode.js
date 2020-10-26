@@ -10,13 +10,7 @@ const ListMode = () => {
 
   const [state, dispatch] = useContext(Context);
 
-  let listDisplay = <p>Something went wrong!</p>;
-
-  if (!state.error) {
-    listDisplay = (
-      <CardList />
-    );
-  }
+  let listDisplay = state.error ? <p>Something went wrong!</p> : <CardList />;
 
   return (
     <div>
@@ -26,10 +20,11 @@ const ListMode = () => {
         mode={state.mode}
         activeType={state.listType}
       />
+      {state.loading ? <Spinner /> : null}
       {listDisplay}
       {state.loading ? <Spinner /> : null}
       {state.page < state.totalPages && !state.loading ? (
-        <LoadMoreBtn text="Load More" onClick={state.loadMoreItems} />
+        <LoadMoreBtn />
       ) : null}
     </div>
   );
