@@ -6,7 +6,7 @@ const initialState = {
   listType: "popular",
   mode: "movie",
   itemsList: [],
-  searchTerm: "",
+  searchTerm: " ",
   submitTerm: '',
   loading: false,
   error: false
@@ -18,6 +18,8 @@ const reducer = (state, action) => {
       return { ...state, searchTerm: action.payload };
     case "SUBMIT_TERM":
       return { ...state, submitTerm: state.searchTerm };
+    case "SUBMIT_AND_SEND_TERM":
+      return { ...state, submitTerm: state.searchTerm, itemsList: [], loading: true };
     case "CLEAR_ITEMS":
       return { ...state, itemsList: [] };
     case "LOADING":

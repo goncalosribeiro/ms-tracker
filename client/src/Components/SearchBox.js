@@ -12,15 +12,8 @@ const SearchBox = () => {
     })
   }
 
-  const submit = (e) => {
-    e.preventDefault();
-    dispatch({
-      type: "SUBMIT_TERM",
-    })
-  }
-
   return (
-    <form className="search-bar" onSubmit={submit}>
+    <form className="search-bar">
       <FontAwesome className="search" name="search" />
       <input
         className=""

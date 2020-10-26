@@ -11,18 +11,29 @@ const App = () => {
 
   useEffect(() => {
     dispatch({ type: "LOADING", payload: true });
-    let endPoint = `https://api.themoviedb.org/3/${state.mode}/${state.listType}?api_key=${process.env.REACT_APP_MSDB_ACCESS}&page=${state.page}`;
+    const endPoint = `https://api.themoviedb.org/3/${state.mode}/${state.listType}?api_key=${process.env.REACT_APP_MSDB_ACCESS}&page=${state.page}&include_adult=false`;
     fetchItems(endPoint);
   }, []);
 
   useEffect(() => {
-    let endPoint = '';
-    dispatch({ type: "LOADING", payload: true });
-    dispatch({ type: "CLEAR_ITEMS", });
-    if (state.loading) {
-      endPoint = `https://api.themoviedb.org/3/search/${state.mode}?api_key=${process.env.REACT_APP_MSDB_ACCESS}&query=${state.submitTerm}&page=${state.page}&include_adult=false`;
+    if (!state.searchTerm) {
+      dispatch({ type: "SUBMIT_AND_SEND_TERM", payload: state.searchTerm });
+    } else if (state.searchTerm.length <= 2) {
+      dispatch({ type: "SUBMIT_TERM", payload: state.searchTerm });
+    } else {
+      dispatch({ type: "SUBMIT_AND_SEND_TERM", payload: state.searchTerm });
     }
-    fetchItems(endPoint);
+  }, [state.searchTerm]);
+
+  useEffect(() => {
+    if (!state.submitTerm) {
+      const endPoint = `https://api.themoviedb.org/3/${state.mode}/${state.listType}?api_key=${process.env.REACT_APP_MSDB_ACCESS}&page=${state.page}&include_adult=false`;
+      fetchItems(endPoint);
+    }
+    if (state.submitTerm.length >= 3) {
+      const endPoint = `https://api.themoviedb.org/3/search/${state.mode}?api_key=${process.env.REACT_APP_MSDB_ACCESS}&query=${state.submitTerm}&page=${state.page}&include_adult=false`;
+      fetchItems(endPoint);
+    }
   }, [state.submitTerm]);
 
   const fetchItems = (endPoint) => {
