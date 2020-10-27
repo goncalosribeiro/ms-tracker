@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Context } from '../store/store'
 import './Header.css'
 
 const Header = (props) => {
+  const [state, dispatch] = useContext(Context);
+
+  const modeClick = (mode) => {
+    dispatch({ type: "MODE", payload: mode });
+  };
+
   return (
     <div>
       <div className="bg-content" />
@@ -15,12 +22,12 @@ const Header = (props) => {
           </div>
         </div>
         <div className="top-center">
-          <NavLink to="/movie" className="ch-button">
-            {/* onClick={props.mode} */}
+          <NavLink to="/movie" className="ch-button"
+            onClick={() => modeClick("movie")}>
             Movies
           </NavLink>
-          <NavLink to="/tv" className="ch-button">
-            {/* onClick={props.mode} */}
+          <NavLink to="/tv" className="ch-button"
+            onClick={() => modeClick("tv")}>
             Series
           </NavLink>
         </div>

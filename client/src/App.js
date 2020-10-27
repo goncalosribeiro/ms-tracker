@@ -16,6 +16,11 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    const endPoint = `https://api.themoviedb.org/3/${state.mode}/${state.listType}?api_key=${process.env.REACT_APP_MSDB_ACCESS}&page=${state.page}&include_adult=false`;
+    fetchItems(endPoint);
+  }, [state.mode, state.listType]);
+
+  useEffect(() => {
     if (!state.searchTerm) {
       dispatch({ type: "SUBMIT_AND_SEND_TERM", payload: state.searchTerm });
     } else if (state.searchTerm.length <= 2) {

@@ -65,7 +65,7 @@
 
 .rate-value p {
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 600;
 }
 
 .text-content {
@@ -94,5 +94,10 @@
 
 .item-year {
   font-size: 12px;
+  font-weight: 700;
+}
+
+.item-tagline {
+  font-size: 0.8rem;
   font-weight: 400;
 }

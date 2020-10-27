@@ -3,7 +3,6 @@ import Card from "./Card";
 import { Context } from "../store/store";
 import './CardList.css';
 
-
 const CardList = (props) => {
   const [state, dispatch] = useContext(Context);
 

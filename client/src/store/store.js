@@ -6,7 +6,7 @@ const initialState = {
   listType: "popular",
   mode: "movie",
   itemsList: [],
-  searchTerm: "",
+  searchTerm: '',
   submitTerm: '',
   loading: false,
   error: false,
@@ -36,7 +36,26 @@ const reducer = (state, action) => {
     case "LOAD_MORE":
       return { ...state, loadMore: action.payload };
     case "CLEAR":
-      return { ...state, error: false, loading: false, loadMore: false };
+      return {
+        ...state, error: false, loading: false, loadMore: false
+      };
+    case "MODE":
+      return {
+        ...state,
+        mode: action.payload,
+        page: 1,
+        itemsList: [],
+        loading: true,
+        listType: "popular"
+      };
+    case "TYPE":
+      return {
+        ...state,
+        listType: action.payload,
+        page: 1,
+        itemsList: [],
+        loading: true
+      };
 
     default:
       return state;
