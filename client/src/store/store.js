@@ -10,13 +10,14 @@ const initialState = {
   submitTerm: '',
   loading: false,
   error: false,
-  loadMore: false
+  loadMore: false,
+  clearInput: false
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "SEARCH_TERM":
-      return { ...state, searchTerm: action.payload };
+      return { ...state, searchTerm: action.payload, listType: '' };
     case "SUBMIT_TERM":
       return { ...state, submitTerm: state.searchTerm, page: 1 };
     case "SUBMIT_AND_SEND_TERM":
@@ -39,6 +40,8 @@ const reducer = (state, action) => {
       return {
         ...state, error: false, loading: false, loadMore: false
       };
+    case "CLEAR_INPUT":
+      return { ...state, clearInput: false };
     case "MODE":
       return {
         ...state,
@@ -46,7 +49,9 @@ const reducer = (state, action) => {
         page: 1,
         itemsList: [],
         loading: true,
-        listType: "popular"
+        listType: "popular",
+        searchTerm: '',
+        clearInput: true
       };
     case "TYPE":
       return {
@@ -54,7 +59,9 @@ const reducer = (state, action) => {
         listType: action.payload,
         page: 1,
         itemsList: [],
-        loading: true
+        loading: true,
+        searchTerm: '',
+        clearInput: true
       };
 
     default:

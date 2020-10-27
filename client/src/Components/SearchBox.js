@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import FontAwesome from "react-fontawesome";
 import { Context } from "../store/store";
 import './SearchBox.css'
@@ -11,6 +11,13 @@ const SearchBox = () => {
       type: "SEARCH_TERM", payload: event.target.value
     })
   }
+
+  useEffect(() => {
+    if (state.clearInput === true) {
+      document.querySelector('input').value = '';
+      dispatch({ type: "CLEAR_INPUT" })
+    }
+  }, [state.clearInput])
 
   return (
     <form className="search-bar">
