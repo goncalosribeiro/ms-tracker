@@ -16,7 +16,8 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const endPoint = `https://api.themoviedb.org/3/${state.mode}/${state.listType}?api_key=${process.env.REACT_APP_MSDB_ACCESS}&page=${state.page}&include_adult=false`;
+    const listType = !state.listType ? 'popular' : state.listType
+    const endPoint = `https://api.themoviedb.org/3/${state.mode}/${listType}?api_key=${process.env.REACT_APP_MSDB_ACCESS}&page=${state.page}&include_adult=false`;
     fetchItems(endPoint);
   }, [state.mode, state.listType]);
 

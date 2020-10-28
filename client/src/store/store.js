@@ -49,7 +49,7 @@ const reducer = (state, action) => {
         page: 1,
         itemsList: [],
         loading: true,
-        listType: "popular",
+        listType: "",
         searchTerm: '',
         clearInput: true
       };
